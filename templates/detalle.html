@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+<h2>Detalle de Encomienda</h2>
+
+<a href="/lista/" class="btn btn-secondary">
+<i class="bi bi-arrow-left"></i> Volver
+</a>
+</div>
+
+<div class="card shadow-sm mb-4">
+<div class="card-body">
+
+<div class="row">
+
+<div class="col-md-6">
+<p><strong>Código:</strong> {{ encomienda.codigo }}</p>
+<p><strong>Descripción:</strong> {{ encomienda.descripcion }}</p>
+<p><strong>Peso:</strong> {{ encomienda.peso }} kg</p>
+<p><strong>Ruta:</strong> {{ encomienda.ruta }}</p>
+</div>
+
+<div class="col-md-6">
+<p><strong>Remitente:</strong> {{ encomienda.remitente }}</p>
+<p><strong>Destinatario:</strong> {{ encomienda.destinatario }}</p>
+<p><strong>Fecha envío:</strong> {{ encomienda.fecha_envio }}</p>
+<p><strong>Fecha entrega:</strong> {{ encomienda.fecha_entrega }}</p>
+<p><strong>Estado:</strong> {{ encomienda.get_estado_display }}</p>
+</div>
+
+</div>
+
+</div>
+</div>
+
+{% if not encomienda.esta_entregada %}
+<div class="mb-4">
+  <form method="post" action="{% url 'cambiar_estado' encomienda.pk %}" class="d-inline me-2">
+    {% csrf_token %}
+    <input type="hidden" name="estado" value="en_transito">
+    <button type="submit" class="btn btn-warning"
+      {% if encomienda.estado != 'pendiente' %}disabled{% endif %}>
+      Marcar como En tránsito
+    </button>
+  </form>
+  <form method="post" action="{% url 'cambiar_estado' encomienda.pk %}" class="d-inline">
+    {% csrf_token %}
+    <input type="hidden" name="estado" value="entregada">
+    <button type="submit" class="btn btn-success"
+      {% if encomienda.estado == 'entregada' %}disabled{% endif %}>
+      Marcar como Entregada
+    </button>
+  </form>
+</div>
+{% endif %}
+
+<div class="card shadow-sm">
+<div class="card-body">
+
+<h4 class="mb-3">
+<i class="bi bi-clock-history"></i>
+Historial de Estados
+</h4>
+
+<table class="table table-hover">
+
+<tr>
+<th>Estado</th>
+<th>Fecha</th>
+</tr>
+
+{% for h in historial %}
+<tr>
+<td>{{ h.estado }}</td>
+<td>{{ h.fecha }}</td>
+</tr>
+{% empty %}
+<tr>
+<td colspan="2">Sin historial registrado</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</div>
+</div>
+
+{% endblock %}

@@ -16,7 +16,7 @@ services:
 
   web:
     build: .
-    container_name: django_app
+    container_name: sistema_encomiendas_app
     env_file:
       - .env
     environment:

@@ -1,0 +1,85 @@
+body{
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #f8f9fa, #eef2f7);
+}
+
+.navbar-brand{
+    font-size: 1.3rem;
+}
+
+.card{
+    border: none;
+    border-radius: 15px;
+    transition: 0.3s;
+    animation: fadeUp .5s ease;
+    background: #ffffff;
+}
+
+.card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.10);
+}
+
+.card-body form p {
+    margin-bottom: 1rem;
+}
+
+.form-control,
+.form-select {
+    border-radius: 12px;
+    background: #f8f9fa;
+    border: 1px solid #d9dee6;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.15rem rgba(13,110,253,0.15);
+}
+
+label {
+    font-weight: 600;
+}
+
+.table{
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table th{
+    background: #0d6efd;
+    color: white;
+}
+
+.btn{
+    border-radius: 10px;
+}
+
+.btn:hover{
+    transform: scale(1.03);
+    transition: .2s;
+}
+
+h1,h2,h3{
+    font-weight: 700;
+}
+
+.alert{
+    border-radius: 12px;
+}
+
+table tr:hover{
+    background:#f8f9fa;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform: translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform: translateY(0);
+    }
+}

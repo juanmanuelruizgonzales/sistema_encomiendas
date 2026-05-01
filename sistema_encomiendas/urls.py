@@ -1,5 +1,5 @@
 """
-URL configuration for prueba_django project.
+URL configuration for sistema_encomiendas project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/6.0/topics/http/urls/
@@ -15,8 +15,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+
+admin.site.site_header = "Sistema de Encomiendas"
+admin.site.site_title = "Panel Administrativo"
+admin.site.index_title = "Administración General"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('envios.urls')),
 ]
