@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install django psycopg2-binary
+RUN pip install -r requirements.txt
 
 EXPOSE 8000
 

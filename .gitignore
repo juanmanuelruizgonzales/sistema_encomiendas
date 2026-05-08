@@ -17,6 +17,12 @@ staticfiles/
 # Environment
 .env
 
+# Temporary/debug files
+test_output.txt
+test_results.txt
+tmp_*.py
+debug_*.py
+
 # Docker
 docker-compose.override.yml
 

@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import timedelta
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
 from django.utils import timezone
@@ -86,8 +87,10 @@ class Encomienda(models.Model):
         if self.estado == EstadoEncomienda.ENTREGADA and not self.fecha_entrega:
             errors['estado'] = "La encomienda debe tener fecha de entrega si está entregada"
 
-        if self.fecha_entrega and self.fecha_entrega < timezone.now():
-            errors['fecha_entrega'] = "No puede ser en el pasado"
+        if self.fecha_entrega:
+            now = timezone.now()
+            if self.fecha_entrega < now - timedelta(seconds=1):
+                errors['fecha_entrega'] = "No puede ser en el pasado"
 
         if errors:
             raise ValidationError(errors)
